@@ -1,0 +1,44 @@
+stages:
+# - test
+ - deploy
+
+before_script:
+ - pwd
+ - java -version
+ - javac -version
+ - who
+ - mvn -v
+# - ps -ef |grep 'java -jar task2-0.0.1-SNAPSHOT.jar' |awk '{print $2}'|xargs kill -9 2> tmp.txt
+
+ 
+# test:
+#     stage: test
+#     script:
+#         - mvn compile
+#         - mvn cobertura:cobertura
+#         - mvn cobertura:dump-datafile
+#     # artifacts:
+#     #     paths:
+#     #      - target/site/cobertura/
+#     #     expire_in: 1 years
+#     only:
+#         - master
+#     # coverage: '/coverage line-rate="\d+/'
+
+
+
+
+deploy:
+    stage: deploy
+    script:
+      - pkill -9 java
+      - mvn clean package
+      - cd target
+      - nohup java -jar sunnytable-0.0.1-SNAPSHOT.jar >> out 2> 1 &
+    only:
+      - master
+    artifacts:
+      paths:
+        - target/contiperf-report/
+      expire_in: 1 years
+    

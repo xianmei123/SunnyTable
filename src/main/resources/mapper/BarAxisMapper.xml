@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.evigel.sunnytable.mapper.BarAxisMapper">
+    <select id= "getTemplate" resultType="com.evigel.sunnytable.dto.BarChartTemplateDto">
+        SELECT
+        DISTINCT
+            foid.fid id,
+            umid.mn name,
+            umid.uid userId,
+            bar.*
+        FROM
+            umid,
+            foid,
+            barAxis bar
+        WHERE
+            foid.fid = '${fid}'
+        AND
+            umid.mid = foid.oid
+        AND
+            bar.mid = umid.mid
+    </select>
+</mapper>

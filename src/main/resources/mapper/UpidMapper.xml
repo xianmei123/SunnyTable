@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.evigel.sunnytable.mapper.UpidMapper">
+    <select id= "getType" resultType="Integer">
+        SELECT
+        DISTINCT
+            umid.type type
+        FROM
+            upid,
+            umid
+        WHERE
+            upid.pid = '${pid}'
+        AND
+            umid.mid = upid.mid
+    </select>
+
+    <select id= "getChartByName" resultType="com.evigel.sunnytable.entity.Upid">
+        SELECT
+            *
+        FROM
+            upid
+        WHERE
+            upid.pName = '${name}'
+        AND
+            upid.uid = '${uid}'
+    </select>
+</mapper>

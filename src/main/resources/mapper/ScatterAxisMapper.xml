@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.evigel.sunnytable.mapper.ScatterAxisMapper">
+    <select id= "getTemplate" resultType="com.evigel.sunnytable.dto.ScatterPlotTemplateDto">
+        SELECT
+        DISTINCT
+            foid.fid id,
+            umid.mn name,
+            umid.uid userId,
+            scatter.*
+        FROM
+            umid,
+            foid,
+            scatterAxis scatter
+        WHERE
+            foid.fid = '${fid}'
+        AND
+            umid.mid = foid.oid
+        AND
+            scatter.mid = umid.mid
+    </select>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.evigel.sunnytable.mapper.UbidMapper">
+    <select id= "getBill" resultType="com.evigel.sunnytable.dto.BillDto">
+        SELECT
+            ubid.bid id,
+            ubid.uid userId,
+            ubid.detail,
+            ubid.time,
+            ubid.type,
+            ubid.income,
+            ubid.cost
+        FROM
+            ubid
+        WHERE
+            ubid.uid = #{uid,jdbcType = VARCHAR}
+        AND
+            ubid.time >= #{start_time ,jdbcType=DATE}
+        AND
+            #{end_time ,jdbcType=DATE} >= ubid.time
+        ORDER by ubid.time ASC
+    </select>
+
+    <select id= "getBillBeforeTime" resultType="com.evigel.sunnytable.dto.BillDto">
+        SELECT
+            ubid.bid id,
+            ubid.uid userId,
+            ubid.detail,
+            ubid.time,
+            ubid.type,
+            ubid.income,
+            ubid.cost
+        FROM
+            ubid
+        WHERE
+            ubid.uid = #{uid,jdbcType = VARCHAR}
+        AND
+            #{end_time ,jdbcType=DATE} >= ubid.time
+        ORDER by ubid.time ASC
+    </select>
+
+    <select id= "getBillAfterTime" resultType="com.evigel.sunnytable.dto.BillDto">
+        SELECT
+            ubid.bid id,
+            ubid.uid userId,
+            ubid.detail,
+            ubid.time,
+            ubid.type,
+            ubid.income,
+            ubid.cost
+        FROM
+            ubid
+        WHERE
+            ubid.uid = #{uid,jdbcType = VARCHAR}
+        AND
+            ubid.time >= #{start_time ,jdbcType=DATE}
+        ORDER by ubid.time ASC
+    </select>
+
+    <select id= "getBillAll" resultType="com.evigel.sunnytable.dto.BillDto">
+        SELECT
+            ubid.bid id,
+            ubid.uid userId,
+            ubid.detail,
+            ubid.time,
+            ubid.type,
+            ubid.income,
+            ubid.cost
+        FROM
+            ubid
+        WHERE
+            ubid.uid = #{uid,jdbcType = VARCHAR}
+        ORDER by ubid.time ASC
+    </select>
+
+    <select id= "getBillType" resultType="com.evigel.sunnytable.dto.BillDto">
+        SELECT
+            ubid.bid id,
+            ubid.uid userId,
+            ubid.detail,
+            ubid.time,
+            ubid.type,
+            ubid.income,
+            ubid.cost
+        FROM
+            ubid
+        WHERE
+            ubid.uid = #{uid,jdbcType = VARCHAR}
+        AND
+            ubid.time >= #{start_time ,jdbcType=DATE}
+        AND
+            #{end_time ,jdbcType=DATE} >= ubid.time
+        AND
+           ubid.type = #{type,jdbcType = VARCHAR}
+        ORDER by ubid.time ASC
+    </select>
+
+    <select id= "getBillBeforeTimeType" resultType="com.evigel.sunnytable.dto.BillDto">
+        SELECT
+            ubid.bid id,
+            ubid.uid userId,
+            ubid.detail,
+            ubid.time,
+            ubid.type,
+            ubid.income,
+            ubid.cost
+        FROM
+            ubid
+        WHERE
+            ubid.uid = #{uid,jdbcType = VARCHAR}
+        AND
+            #{end_time ,jdbcType=DATE} >= ubid.time
+        AND
+           ubid.type = #{type,jdbcType = VARCHAR}
+        ORDER by ubid.time ASC
+    </select>
+
+    <select id= "getBillAfterTimeType" resultType="com.evigel.sunnytable.dto.BillDto">
+        SELECT
+            ubid.bid id,
+            ubid.uid userId,
+            ubid.detail,
+            ubid.time,
+            ubid.type,
+            ubid.income,
+            ubid.cost
+        FROM
+            ubid
+        WHERE
+            ubid.uid = #{uid,jdbcType = VARCHAR}
+        AND
+            ubid.time >= #{start_time ,jdbcType=DATE}
+        AND
+            ubid.type = #{type,jdbcType = VARCHAR}
+        ORDER by ubid.time ASC
+    </select>
+
+    <select id= "getBillAllType" resultType="com.evigel.sunnytable.dto.BillDto">
+        SELECT
+            ubid.bid id,
+            ubid.uid userId,
+            ubid.detail,
+            ubid.time,
+            ubid.type,
+            ubid.income,
+            ubid.cost
+        FROM
+            ubid
+        WHERE
+            ubid.uid = #{uid,jdbcType = VARCHAR}
+        AND
+            ubid.type = #{type,jdbcType = VARCHAR}
+        ORDER by ubid.time ASC
+    </select>
+
+    <select id= "getAllType" resultType="String">
+        SELECT DISTINCT
+            ubid.type
+        FROM
+            ubid
+        WHERE
+            ubid.uid = #{uid,jdbcType = VARCHAR}
+    </select>
+</mapper>

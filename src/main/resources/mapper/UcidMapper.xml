@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.evigel.sunnytable.mapper.UcidMapper">
+    <select id= "getColumn" resultType="String">
+        SELECT
+            cdata.val
+        FROM
+            cdata
+        WHERE
+            cdata.cid = '${cid}'
+        ORDER by cdata.no ASC
+    </select>
+
+</mapper>

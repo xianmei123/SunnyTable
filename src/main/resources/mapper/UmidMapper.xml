@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.evigel.sunnytable.mapper.UmidMapper">
+    <select id= "getTemplates" resultType="com.evigel.sunnytable.dto.TemplateInfoDto">
+        SELECT
+        DISTINCT
+            foid.fid,
+            umid.mn name,
+            umid.type
+        FROM
+            umid,
+            foid
+        WHERE
+            umid.uid = '${uid}'
+        AND
+            umid.mid = foid.oid
+        AND
+            umid.isVisible = 'true'
+    </select>
+
+    <select id= "getTemplateByFid" resultType="com.evigel.sunnytable.dto.TemplateInfoDto">
+        SELECT
+        DISTINCT
+            foid.fid,
+            umid.mn name,
+            umid.type
+        FROM
+            umid,
+            foid
+        WHERE
+            foid.fid = '${fid}'
+        AND
+            umid.mid = foid.oid
+    </select>
+
+    <select id= "getTemplateByName" resultType="com.evigel.sunnytable.entity.Umid">
+        SELECT
+            *
+        FROM
+            umid
+        WHERE
+            umid.mn = '${fname}'
+        AND
+            umid.uid = '${uid}'
+    </select>
+</mapper>

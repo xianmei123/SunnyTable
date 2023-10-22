@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.evigel.sunnytable.mapper.UtidMapper">
+    <select id= "getDataSet" resultType="com.evigel.sunnytable.dto.DataSetDto">
+        SELECT
+        DISTINCT
+            foid.fid id,
+            utid.tn name,
+            utid.uid userId
+        FROM
+            utid,
+            foid
+        WHERE
+            utid.tid = foid.oid
+        AND
+            foid.fid = '${fid}'
+    </select>
+</mapper>
